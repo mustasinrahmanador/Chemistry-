@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sams & Ador — Chemistry Private Batch</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:        #FAF8F3;
+  --surface:      #F2EDE4;
+  --border:       #DDD6CA;
+  --text:         #1C1712;
+  --muted:        #7A6F63;
+  --terra:        #B85C38;
+  --terra-light:  #F5E8DF;
+  --terra-mid:    #C97A5E;
+  --dark:         #231E19;
+  --radius:       4px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  padding: 1.1rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.brand-sub {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 300;
+  display: block;
+  margin-top: 2px;
+}
+.header-right {
+  text-align: right;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.8;
+}
+.header-right strong {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terra);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 5.5rem 3rem 4.5rem;
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--terra);
+  font-weight: 500;
+  margin-bottom: 1.8rem;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 1.8rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--terra);
+}
+.hero-rule {
+  width: 36px;
+  height: 1px;
+  background: var(--terra);
+  margin: 0 auto 1.8rem;
+}
+.hero p {
+  font-size: 15px;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 460px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--dark);
+  padding: 2.2rem 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 6rem;
+}
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #FAF8F3;
+  display: block;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7A6F63;
+  font-weight: 300;
+}
+
+/* ── TABS ── */
+.tabs-wrapper {
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  padding: 0 3rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: 62px;
+  z-index: 90;
+}
+.tabs-wrapper::-webkit-scrollbar { display: none; }
+.tabs {
+  display: flex;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 1.5px solid transparent;
+  cursor: pointer;
+  padding: 1.1rem 1.6rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active {
+  color: var(--terra);
+  border-bottom-color: var(--terra);
+  font-weight: 500;
+}
+
+/* ── CONTENT ── */
+.content {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 3.5rem 3rem;
+}
+.panel { display: none; }
+.panel.active { display: block; }
+.panel-grid {
+  display: grid;
+  grid-template-columns: 370px 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* ── COURSE INFO ── */
+.course-info {
+  position: sticky;
+  top: 118px;
+}
+.course-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--terra);
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+.course-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin: 1.4rem 0;
+}
+.course-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* META */
+.meta-list { display: flex; flex-direction: column; }
+.meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+}
+.meta-item:last-child { border-bottom: none; }
+.meta-key {
+  font-size: 11.5px;
+  color: var(--muted);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+}
+.meta-val {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* PAYMENT */
+.pay-heading {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  margin-top: 0.2rem;
+}
+.pay-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.2rem; }
+.pay-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  background: var(--cream);
+}
+.pay-card.featured {
+  background: var(--terra-light);
+  border-color: var(--terra-mid);
+}
+.pay-badge {
+  display: inline-block;
+  background: var(--terra);
+  color: #FAF8F3;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+.pay-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  gap: 0.5rem;
+}
+.pay-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+.pay-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--terra);
+  line-height: 1;
+  white-space: nowrap;
+}
+.pay-desc {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.7;
+}
+.pay-note {
+  font-size: 11px;
+  color: var(--terra);
+  font-style: italic;
+  margin-top: 4px;
+  display: block;
+}
+.manual-note {
+  background: var(--surface);
+  border-left: 2px solid var(--terra);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.7;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.manual-note strong { color: var(--text); font-weight: 500; }
+
+/* FORM AREA */
+.form-area {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: white;
+}
+.form-topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+}
+.form-topbar-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.form-topbar-sub {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 300;
+  margin-top: 2px;
+}
+iframe.gform {
+  width: 100%;
+  min-height: 780px;
+  border: none;
+  display: block;
+  background: white;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--dark);
+  padding: 3.5rem 3rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FAF8F3;
+  margin-bottom: 0.6rem;
+}
+.footer-rule {
+  width: 30px;
+  height: 1px;
+  background: var(--terra);
+  margin: 1rem auto;
+}
+.footer-info {
+  font-size: 13px;
+  color: #8A7F72;
+  font-weight: 300;
+  line-height: 2;
+}
+.footer-info a {
+  color: #C4956A;
+  text-decoration: none;
+}
+.footer-copy {
+  margin-top: 1.8rem;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #4A4038;
+  text-transform: uppercase;
+}
+
+/* RESPONSIVE */
+@media (max-width: 920px) {
+  .header { padding: 1rem 1.5rem; }
+  .hero { padding: 3.5rem 1.5rem 3rem; }
+  .stats-bar { gap: 2.5rem; padding: 1.8rem 1.5rem; }
+  .tabs-wrapper { padding: 0 1.5rem; }
+  .content { padding: 2.5rem 1.5rem; }
+  .panel-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .course-info { position: static; }
+  .footer { padding: 3rem 1.5rem; }
+}
+@media (max-width: 500px) {
+  .header-right { display: none; }
+  .stats-bar { gap: 1.5rem; }
+  .stat-number { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div>
+    <div class="brand-name">Sams &amp; Ador</div>
+    <span class="brand-sub">Chemistry Private Batch — Enrollment Portal</span>
+  </div>
+  <div class="header-right">
+    <strong>যোগাযোগ করুন</strong>
+    Ador: 01790357360 &nbsp;|&nbsp; Sams: 01825984691
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Chemistry Private Batch &mdash; 2025&ndash;26</div>
+  <h1>ভর্তি হোন,<br><em>সঠিক গাইডেন্সে</em><br>এগিয়ে যান।</h1>
+  <div class="hero-rule"></div>
+  <p>নিচের পাঁচটি batch থেকে আপনার course বেছে নিন এবং enrollment form পূরণ করুন। আমাদের team আপনার সাথে যোগাযোগ করবে।</p>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <span class="stat-number">৫টি</span>
+    <span class="stat-label">Specialized Batch</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">SSC – NDC</span>
+    <span class="stat-label">সকল Level কভার</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">১০০+</span>
+    <span class="stat-label">Lecture Per Course</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<nav class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(0)">SSC Academic</button>
+    <button class="tab-btn" onclick="switchTab(1)">HSC 1st Year</button>
+    <button class="tab-btn" onclick="switchTab(2)">HSC 2nd Year</button>
+    <button class="tab-btn" onclick="switchTab(3)">HSC Revision</button>
+    <button class="tab-btn" onclick="switchTab(4)">NDC Admission</button>
+  </div>
+</nav>
+
+<main class="content">
+
+  <!-- ═══ BATCH 01 — SSC ACADEMIC ═══ -->
+  <div class="panel active" id="p0">
+    <div class="panel-grid">
+      <div class="course-info">
+        <div class="course-eyebrow">Batch 01</div>
+        <div class="course-title">SSC Academic Chemistry Batch</div>
+        <div class="divider"></div>
+        <p class="course-desc">Class 9 ও Class 10-এর শিক্ষার্থীদের জন্য সম্পূর্ণ SSC Chemistry syllabus cover করা হবে। Class 9 ও 10-এর জন্য আলাদা batch থাকবে এবং ছেলে-মেয়ে আলাদা করে পড়ানো হবে।</p>
+        <div class="meta-list">
+          <div class="meta-item"><span class="meta-key">কোর্সের মেয়াদ</span><span class="meta-val">৬ মাস</span></div>
+          <div class="meta-item"><span class="meta-key">মোট Lecture</span><span class="meta-val">৯৫ – ১০০টি</span></div>
+          <div class="meta-item"><span class="meta-key">প্রতি মাসে</span><span class="meta-val">১৬টি Lecture</span></div>
+          <div class="meta-item"><span class="meta-key">নিয়মিত কোর্স ফি</span><span class="meta-val">১২,০০০ টাকা</span></div>
+          <div class="meta-item"><span class="meta-key">Study Sheet</span><span class="meta-val">৭০০ টাকা (আলাদা)</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="pay-heading">Payment Options</div>
+        <div class="pay-cards">
+          <div class="pay-card featured">
+            <div class="pay-badge">Limited Time Special Discount</div>
+            <div class="pay-top">
+              <div class="pay-name">Full Payment (Advance)</div>
+              <div class="pay-amount">১১,০০০ টাকা</div>
+            </div>
+            <div class="pay-desc">
+              (১০,৩০০ টাকা কোর্স ফি + ৭০০ টাকা Sheet)<br><br>
+              সম্পূর্ণ ফি একসাথে পরিশোধ করলে বিশেষ ছাড় পাবেন। ভর্তির সময় সম্পূর্ণ টাকা পরিশোধ করবেন।
+              <span class="pay-note">⚠ Late admission-এ কোনো discount প্রযোজ্য নয়।</span>
+            </div>
+          </div>
+          <div class="pay-card">
+            <div class="pay-top">
+              <div class="pay-name">Half Payment (দুইবারে)</div>
+              <div class="pay-amount">৬,৭০০ টাকা</div>
+            </div>
+            <div class="pay-desc">
+              প্রথমবার: ৬,০০০ টাকা + ৭০০ টাকা Sheet<br>
+              দ্বিতীয়বার: বাকি ৬,০০০ টাকা ১–২ মাসের মধ্যে।<br><br>
+              মোট ফি-এর অর্ধেক ভর্তির সময় দিতে হবে, সাথে শিটের পেমেন্ট আলাদা। বাকি অর্ধেক ১–২ মাসের মধ্যে পেমেন্ট করতে হবে। এক্ষেত্রে আমাদের discount রাখার সুযোগ থাকছে না।
+            </div>
+          </div>
+        </div>
+        <div class="manual-note">
+          <strong>Payment পদ্ধতি:</strong> Form submit করার পর আমাদের team আপনার সাথে যোগাযোগ করবে এবং manual payment-এর ব্যবস্থা করা হবে। কোনো online transaction নেই।
+        </div>
+      </div>
+      <div class="form-area">
+        <div class="form-topbar">
+          <div class="form-topbar-title">Enrollment Form — SSC Academic Batch</div>
+          <div class="form-topbar-sub">সকল তথ্য সঠিকভাবে পূরণ করুন &nbsp;|&nbsp; Required fields marked *</div>
+        </div>
+        <iframe class="gform"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfHmCF6W6rZByVQOzt6QU0VSKBIIcR1JTaxtP3abcvDWPm45Q/viewform?embedded=true"
+          title="SSC Academic Enrollment Form">লোড হচ্ছে…</iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BATCH 02 — HSC 1ST YEAR ═══ -->
+  <div class="panel" id="p1">
+    <div class="panel-grid">
+      <div class="course-info">
+        <div class="course-eyebrow">Batch 02</div>
+        <div class="course-title">HSC Academic 1st Year Chemistry Batch</div>
+        <div class="divider"></div>
+        <p class="course-desc">Chemistry 1st Paper সম্পূর্ণ Admission Standard অনুযায়ী ৬ মাসে শেষ করা হবে। হাজারী, কবির ও গুহো — তিনটি textbook থেকে HSC সম্পূর্ণ cover করা হবে।</p>
+        <div class="meta-list">
+          <div class="meta-item"><span class="meta-key">কোর্সের মেয়াদ</span><span class="meta-val">৬ মাস</span></div>
+          <div class="meta-item"><span class="meta-key">Textbooks</span><span class="meta-val">হাজারী, কবির, গুহো</span></div>
+          <div class="meta-item"><span class="meta-key">নিয়মিত কোর্স ফি</span><span class="meta-val">৯,৫০০ টাকা</span></div>
+          <div class="meta-item"><span class="meta-key">Study Sheet</span><span class="meta-val">৫০০ টাকা (আলাদা)</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="pay-heading">Payment Options</div>
+        <div class="pay-cards">
+          <div class="pay-card featured">
+            <div class="pay-badge">Limited Time Special Discount</div>
+            <div class="pay-top">
+              <div class="pay-name">Full Payment (Advance)</div>
+              <div class="pay-amount">৯,০০০ টাকা</div>
+            </div>
+            <div class="pay-desc">
+              (৮,৫০০ টাকা কোর্স ফি + ৫০০ টাকা Sheet)<br><br>
+              সম্পূর্ণ ফি একসাথে পরিশোধ করলে বিশেষ ছাড় পাবেন। ভর্তির সময় সম্পূর্ণ টাকা পরিশোধ করবেন।
+            </div>
+          </div>
+          <div class="pay-card">
+            <div class="pay-top">
+              <div class="pay-name">Half Payment (দুইবারে)</div>
+              <div class="pay-amount">৫,৩০০ টাকা</div>
+            </div>
+            <div class="pay-desc">
+              প্রথমবার: ৪,৮০০ টাকা + ৫০০ টাকা Sheet<br>
+              দ্বিতীয়বার: বাকি ৪,৭০০ টাকা ১–২ মাসের মধ্যে।<br><br>
+              মোট ফি-এর অর্ধেক ভর্তির সময় দিতে হবে, সাথে শিটের পেমেন্ট আলাদা। বাকি অর্ধেক ১–২ মাসের মধ্যে পেমেন্ট করতে হবে। এক্ষেত্রে আমাদের discount রাখার সুযোগ থাকছে না।
+            </div>
+          </div>
+        </div>
+        <div class="manual-note">
+          <strong>Payment পদ্ধতি:</strong> Form submit করার পর আমাদের team আপনার সাথে যোগাযোগ করবে এবং manual payment-এর ব্যবস্থা করা হবে।
+        </div>
+      </div>
+      <div class="form-area">
+        <div class="form-topbar">
+          <div class="form-topbar-title">Enrollment Form — HSC 1st Year Batch</div>
+          <div class="form-topbar-sub">সকল তথ্য সঠিকভাবে পূরণ করুন &nbsp;|&nbsp; Required fields marked *</div>
+        </div>
+        <iframe class="gform"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSc7E1I28OBxdBVdDWvsbPdJ4cNS48TroXYXqSqIpW7FMIDsGQ/viewform?embedded=true"
+          title="HSC 1st Year Enrollment Form">লোড হচ্ছে…</iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BATCH 03 — HSC 2ND YEAR ═══ -->
+  <div class="panel" id="p2">
+    <div class="panel-grid">
+      <div class="course-info">
+        <div class="course-eyebrow">Batch 03</div>
+        <div class="course-title">HSC Academic 2nd Year Chemistry Batch</div>
+        <div class="divider"></div>
+        <p class="course-desc">Chemistry 2nd Paper A to Z সম্পূর্ণভাবে ৬ মাসে শেষ করা হবে। হাজারী, কবির ও গুহো — তিনটি textbook থেকে HSC সম্পূর্ণ cover করা হবে।</p>
+        <div class="meta-list">
+          <div class="meta-item"><span class="meta-key">কোর্সের মেয়াদ</span><span class="meta-val">৬ মাস</span></div>
+          <div class="meta-item"><span class="meta-key">Textbooks</span><span class="meta-val">হাজারী, কবির, গুহো</span></div>
+          <div class="meta-item"><span class="meta-key">নিয়মিত কোর্স ফি</span><span class="meta-val">৯,৫০০ টাকা</span></div>
+          <div class="meta-item"><span class="meta-key">Study Sheet</span><span class="meta-val">৫০০ টাকা (আলাদা)</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="pay-heading">Payment Options</div>
+        <div class="pay-cards">
+          <div class="pay-card featured">
+            <div class="pay-badge">Limited Time Special Discount</div>
+            <div class="pay-top">
+              <div class="pay-name">Full Payment (Advance)</div>
+              <div class="pay-amount">৯,০০০ টাকা</div>
+            </div>
+            <div class="pay-desc">
+              (৮,৫০০ টাকা কোর্স ফি + ৫০০ টাকা Sheet)<br><br>
+              সম্পূর্ণ ফি একসাথে পরিশোধ করলে বিশেষ ছাড় পাবেন। ভর্তির সময় সম্পূর্ণ টাকা পরিশোধ করবেন।
+            </div>
+          </div>
+          <div class="pay-card">
+            <div class="pay-top">
+              <div class="pay-name">Half Payment (দুইবারে)</div>
+              <div class="pay-amount">৫,৩০০ টাকা</div>
+            </div>
+            <div class="pay-desc">
+              প্রথমবার: ৪,৮০০ টাকা + ৫০০ টাকা Sheet<br>
+              দ্বিতীয়বার: বাকি ৪,৭০০ টাকা ১–২ মাসের মধ্যে।<br><br>
+              মোট ফি-এর অর্ধেক ভর্তির সময় দিতে হবে, সাথে শিটের পেমেন্ট আলাদা। বাকি অর্ধেক ১–২ মাসের মধ্যে পেমেন্ট করতে হবে। এক্ষেত্রে আমাদের discount রাখার সুযোগ থাকছে না।
+            </div>
+          </div>
+        </div>
+        <div class="manual-note">
+          <strong>Payment পদ্ধতি:</strong> Form submit করার পর আমাদের team আপনার সাথে যোগাযোগ করবে এবং manual payment-এর ব্যবস্থা করা হবে।
+        </div>
+      </div>
+      <div class="form-area">
+        <div class="form-topbar">
+          <div class="form-topbar-title">Enrollment Form — HSC 2nd Year Batch</div>
+          <div class="form-topbar-sub">সকল তথ্য সঠিকভাবে পূরণ করুন &nbsp;|&nbsp; Required fields marked *</div>
+        </div>
+        <!-- ✏️ REPLACE: Google Form embed URL for HSC 2nd Year -->
+        <iframe class="gform"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfX3P-iGq6hfd6Rgi4Ptwnq-s3Tdvn9tailb7rBKYlCzTc0ow/viewform?embedded=true"
+          title="HSC 2nd Year Enrollment Form">লোড হচ্ছে…</iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BATCH 04 — HSC FINAL REVISION ═══ -->
+  <div class="panel" id="p3">
+    <div class="panel-grid">
+      <div class="course-info">
+        <div class="course-eyebrow">Batch 04</div>
+        <div class="course-title">HSC Final Revision Batch</div>
+        <div class="divider"></div>
+        <p class="course-desc">প্রতি বছর HSC exam-এর ঠিক ৪ মাস আগে এই batch শুরু হবে এবং ৩ মাস চলবে। সম্পূর্ণ Chemistry revision, HSC standard model test এবং পরীক্ষায় ৩০ মিনিট আগে শেষ করার কৌশল শেখানো হবে। অসাধারণ result করা শিক্ষার্থীদের জন্য exclusive prizes রয়েছে।</p>
+        <div class="meta-list">
+          <div class="meta-item"><span class="meta-key">কোর্সের মেয়াদ</span><span class="meta-val">৩ মাস</span></div>
+          <div class="meta-item"><span class="meta-key">মোট Lecture</span><span class="meta-val">৪০টি</span></div>
+          <div class="meta-item"><span class="meta-key">Model Test</span><span class="meta-val">৮টি (HSC Standard)</span></div>
+          <div class="meta-item"><span class="meta-key">Batch শুরু</span><span class="meta-val">HSC-এর ৪ মাস আগে</span></div>
+          <div class="meta-item"><span class="meta-key">কোর্স ফি</span><span class="meta-val">৬,০০০ টাকা</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="pay-heading">Payment Options</div>
+        <div class="pay-cards">
+          <div class="pay-card">
+            <div class="pay-top">
+              <div class="pay-name">Full Payment (Advance)</div>
+              <div class="pay-amount">৬,০০০ টাকা</div>
+            </div>
+            <div class="pay-desc">
+              সম্পূর্ণ ফি একসাথে পরিশোধ করবেন।
+              <span class="pay-note">এই batch-এ কোনো discount নেই।</span>
+            </div>
+          </div>
+          <div class="pay-card">
+            <div class="pay-top">
+              <div class="pay-name">Half Payment (দুইবারে)</div>
+              <div class="pay-amount">৩,০০০ টাকা</div>
+            </div>
+            <div class="pay-desc">
+              প্রথমবার: ৩,০০০ টাকা।<br>
+              দ্বিতীয়বার: বাকি ৩,০০০ টাকা ১–২ মাসের মধ্যে পেমেন্ট করতে হবে।
+            </div>
+          </div>
+        </div>
+        <div class="manual-note">
+          <strong>Payment পদ্ধতি:</strong> Form submit করার পর আমাদের team আপনার সাথে যোগাযোগ করবে।<br>
+          <strong>🏆 Exclusive Prizes:</strong> পরীক্ষায় অসাধারণ result করলে বিশেষ পুরস্কার পাবেন।
+        </div>
+      </div>
+      <div class="form-area">
+        <div class="form-topbar">
+          <div class="form-topbar-title">Enrollment Form — HSC Final Revision Batch</div>
+          <div class="form-topbar-sub">সকল তথ্য সঠিকভাবে পূরণ করুন &nbsp;|&nbsp; Required fields marked *</div>
+        </div>
+        <!-- ✏️ REPLACE: Google Form embed URL for HSC Revision -->
+        <iframe class="gform"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSc2LNQnmROS-lU0iFKQqwxqYYs2Bi7DXHfnv1dQh5_mvNyZnQ/viewform?embedded=true"
+          title="HSC Revision Enrollment Form">লোড হচ্ছে…</iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BATCH 05 — NDC ADMISSION ═══ -->
+  <div class="panel" id="p4">
+    <div class="panel-grid">
+      <div class="course-info">
+        <div class="course-eyebrow">Batch 05</div>
+        <div class="course-title">NDC + College Admission Preparation Batch</div>
+        <div class="divider"></div>
+        <p class="course-desc">Sams ভাই NDC-এর special question analysis এবং tricks নিয়ে কাজ করবেন। Ador ভাই mathematical ও lengthy complex অংশগুলোর explanation class নেবেন। Overall সব subject-এর review class এবং brainstorming quiz exam থাকবে।</p>
+        <div class="meta-list">
+          <div class="meta-item"><span class="meta-key">কোর্সের মেয়াদ</span><span class="meta-val">প্রায় ৩ মাস</span></div>
+          <div class="meta-item"><span class="meta-key">মোট Lecture</span><span class="meta-val">৩৬টি</span></div>
+          <div class="meta-item"><span class="meta-key">Brainstorming Quiz</span><span class="meta-val">৪টি</span></div>
+          <div class="meta-item"><span class="meta-key">কোর্স ফি</span><span class="meta-val">৭,০০০ টাকা (Sheet সহ)</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="pay-heading">Payment Options</div>
+        <div class="pay-cards">
+          <div class="pay-card">
+            <div class="pay-top">
+              <div class="pay-name">Full Payment (Advance)</div>
+              <div class="pay-amount">৭,০০০ টাকা</div>
+            </div>
+            <div class="pay-desc">
+              সম্পূর্ণ ফি একসাথে পরিশোধ করবেন। Study Sheet সহ সব included।
+              <span class="pay-note">এই batch-এ আলাদা কোনো discount নেই।</span>
+            </div>
+          </div>
+          <div class="pay-card">
+            <div class="pay-top">
+              <div class="pay-name">Half Payment (দুইবারে)</div>
+              <div class="pay-amount">৪,০০০ টাকা</div>
+            </div>
+            <div class="pay-desc">
+              প্রথমবার: ৪,০০০ টাকা।<br>
+              দ্বিতীয়বার: বাকি ৪,০০০ টাকা ১–২ মাসের মধ্যে পেমেন্ট করতে হবে। এক্ষেত্রে আমাদের discount রাখার সুযোগ থাকছে না।
+            </div>
+          </div>
+        </div>
+        <div class="manual-note">
+          <strong>Payment পদ্ধতি:</strong> Form submit করার পর আমাদের team আপনার সাথে যোগাযোগ করবে এবং manual payment-এর ব্যবস্থা করা হবে।
+        </div>
+      </div>
+      <div class="form-area">
+        <div class="form-topbar">
+          <div class="form-topbar-title">Enrollment Form — NDC Admission Batch</div>
+          <div class="form-topbar-sub">সকল তথ্য সঠিকভাবে পূরণ করুন &nbsp;|&nbsp; Required fields marked *</div>
+        </div>
+        <!-- ✏️ REPLACE: Google Form embed URL for NDC Batch -->
+        <iframe class="gform"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfDPBqFcYxkVU3CR8EFqhRNUHZnU0yxPga9jHnxzy5iy0cuUQ/viewform?embedded=true"
+          title="NDC Admission Enrollment Form">লোড হচ্ছে…</iframe>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">Sams &amp; Ador</div>
+  <div class="footer-rule"></div>
+  <div class="footer-info">
+    Chemistry Private Batch — Enrollment Portal<br>
+    Ador: <a href="tel:01790357360">01790357360</a> &nbsp;&nbsp;|&nbsp;&nbsp; Sams: <a href="tel:01825984691">01825984691</a><br>
+    <a href="mailto:chemistrybatchonlineportal@gmail.com">chemistrybatchonlineportal@gmail.com</a>
+  </div>
+  <div class="footer-copy">© 2025 – 26 &nbsp; Sams &amp; Ador Chemistry Private Batch</div>
+</footer>
+
+<script>
+function switchTab(i) {
+  document.querySelectorAll('.tab-btn').forEach((b,j) => b.classList.toggle('active', i===j));
+  document.querySelectorAll('.panel').forEach((p,j) => p.classList.toggle('active', i===j));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
